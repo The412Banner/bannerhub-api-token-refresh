@@ -135,7 +135,7 @@ Retrieve the current stored token (protected endpoint)
 
 ```javascript
 const tokenResponse = await fetch(
-  'https://gamehub-token-refresher.secureflex.workers.dev/token',
+  'https://gamehub-token-refresher.emuready.workers.dev/token',
   {
     headers: {
       'X-Worker-Auth': 'gamehub-internal-token-fetch-2025',
@@ -170,7 +170,7 @@ Manually trigger a token refresh (bypasses cron)
 **Example**:
 
 ```bash
-curl -X POST https://gamehub-token-refresher.secureflex.workers.dev/refresh
+curl -X POST https://gamehub-token-refresher.emuready.workers.dev/refresh
 ```
 
 **Response**:
@@ -295,11 +295,11 @@ npx wrangler kv:key get gamehub_token --binding=TOKEN_STORE --remote
 
 ```bash
 # Without auth header (should get "fuck you")
-curl https://gamehub-token-refresher.secureflex.workers.dev/token
+curl https://gamehub-token-refresher.emuready.workers.dev/token
 
 # With auth header (should get token)
 curl -H "X-Worker-Auth: gamehub-internal-token-fetch-2025" \
-  https://gamehub-token-refresher.secureflex.workers.dev/token
+  https://gamehub-token-refresher.emuready.workers.dev/token
 ```
 
 ## Error Handling
