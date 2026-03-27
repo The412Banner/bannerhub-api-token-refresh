@@ -1,7 +1,7 @@
 {
-  "name": "gamehub-lite-token-refresher",
+  "name": "bannerhub-api-token-refresher",
   "version": "0.0.1",
-  "description": "Automated GameHub token refresher",
+  "description": "Automated BannerHub token refresher (Cloudflare Worker)",
   "main": "src/index.js",
   "scripts": {
     "deploy": "wrangler deploy",

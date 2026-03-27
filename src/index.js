@@ -1,5 +1,5 @@
-// GameHub Token Refresher
-// Automatically refreshes authentication token every 4 hours
+// BannerHub Token Refresher
+// Automatically refreshes GameHub authentication token every 4 hours
 
 import { md5 } from './md5.js'
 
@@ -19,7 +19,7 @@ export default {
           expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(), // 24 hours
         }
 
-        await env.TOKEN_STORE.put('gamehub_token', JSON.stringify(tokenData))
+        await env.TOKEN_STORE.put('bannerhub_token', JSON.stringify(tokenData))
         console.log('✅ Token refreshed and stored:', newToken)
       }
     } catch (error) {
@@ -38,14 +38,14 @@ export default {
       const authSecret = request.headers.get('X-Worker-Auth')
 
       // Only allow requests with correct secret (from gamehub-api worker)
-      if (authSecret !== 'gamehub-internal-token-fetch-2025') {
+      if (authSecret !== 'bannerhub-internal-token-fetch-2025') {
         return new Response('fuck you', {
           status: 403,
           headers: { 'Content-Type': 'text/plain' },
         })
       }
 
-      const tokenDataStr = await env.TOKEN_STORE.get('gamehub_token')
+      const tokenDataStr = await env.TOKEN_STORE.get('bannerhub_token')
 
       if (!tokenDataStr) {
         return new Response(JSON.stringify({ error: 'No token available' }), {
@@ -74,7 +74,7 @@ export default {
             ).toISOString(),
           }
 
-          await env.TOKEN_STORE.put('gamehub_token', JSON.stringify(tokenData))
+          await env.TOKEN_STORE.put('bannerhub_token', JSON.stringify(tokenData))
 
           return new Response(
             JSON.stringify({
@@ -103,7 +103,7 @@ export default {
     }
 
     return new Response(
-      'GameHub Token Refresher\n\nEndpoints:\nGET /token - Get current token\nPOST /refresh - Manually refresh token',
+      'BannerHub Token Refresher\n\nEndpoints:\nGET /token - Get current token\nPOST /refresh - Manually refresh token',
       {
         headers: { 'Content-Type': 'text/plain' },
       },
