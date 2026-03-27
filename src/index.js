@@ -153,12 +153,22 @@ async function getMailTmToken(env) {
 
 // Request OTP from GameHub
 async function requestOTP(env) {
+  const timestamp = String(Date.now())
+  const params = {
+    clientparams: env.GAMEHUB_CLIENTPARAMS,
+    email: env.GAMEHUB_EMAIL,
+    event: 'register',
+    time: timestamp,
+    token: '',
+  }
+  const signature = await generateSignature(params, env.GAMEHUB_SECRET_KEY)
+
   const response = await fetch(`${env.GAMEHUB_API_BASE}/ems/send`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      sign: 'any',
-      time: String(Date.now()),
+      sign: signature,
+      time: timestamp,
       event: 'register',
       clientparams: env.GAMEHUB_CLIENTPARAMS,
       email: env.GAMEHUB_EMAIL,
