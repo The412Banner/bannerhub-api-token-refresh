@@ -1,24 +1,23 @@
 name = "bannerhub-api-token-refresher"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
+account_id = "a849db7e45ca4c3ab5b1138c3aeaba08"
 
 # Cron trigger - runs every 4 hours
 [triggers]
 crons = ["0 */4 * * *"]
 
 # KV namespace for storing tokens
-# Run: npx wrangler kv:namespace create TOKEN_STORE
-# Then paste the generated id below
 [[kv_namespaces]]
 binding = "TOKEN_STORE"
-id = "YOUR_KV_NAMESPACE_ID_HERE"
+id = "e94aa6c2c5c8439a890940d3c00f890f"
 
 # Environment variables
 [vars]
-GAMEHUB_EMAIL = "YOUR_MAILTM_EMAIL_HERE"
+GAMEHUB_EMAIL = "Bannerhub-api@sharebot.net"
 GAMEHUB_API_BASE = "https://landscape-api.vgabc.com"
-MAILTM_EMAIL = "YOUR_MAILTM_EMAIL_HERE"
-MAILTM_PASSWORD = "YOUR_MAILTM_PASSWORD_HERE"
+MAILTM_EMAIL = "Bannerhub-api@sharebot.net"
+MAILTM_PASSWORD = "Goodluck412!"
 MAILTM_API_BASE = "https://api.mail.tm"
 GAMEHUB_CLIENTPARAMS = "5.3.5|61|en|SM-S928B|1920 * 1080|gamehub_android|gamehub_android_Official|samsung|||||||||banner.hub||qcom"
 GAMEHUB_SECRET_KEY = "all-egg-shell-y7ZatUDk"
