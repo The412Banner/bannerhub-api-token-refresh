@@ -243,14 +243,10 @@ async function loginWithOTP(env, otp) {
     }),
   })
 
-  if (!response.ok) {
-    throw new Error(`Login failed: ${response.status}`)
-  }
-
   const data = await response.json()
 
-  if (data.code !== 200) {
-    throw new Error(`Login failed: ${data.msg}`)
+  if (!response.ok || data.code !== 200) {
+    throw new Error(`Login failed: ${response.status} — ${JSON.stringify(data)}`)
   }
 
   if (!data.data?.userinfo?.token) {
