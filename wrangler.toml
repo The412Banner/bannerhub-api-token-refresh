@@ -12,12 +12,10 @@ crons = ["0 */4 * * *"]
 binding = "TOKEN_STORE"
 id = "e94aa6c2c5c8439a890940d3c00f890f"
 
-# Environment variables
+# Non-sensitive environment variables only
+# GAMEHUB_EMAIL, MAILTM_EMAIL, MAILTM_PASSWORD are set as encrypted Worker secrets
 [vars]
-GAMEHUB_EMAIL = "bannerhub-api@sharebot.net"
 GAMEHUB_API_BASE = "https://landscape-api.vgabc.com"
-MAILTM_EMAIL = "bannerhub-api@sharebot.net"
-MAILTM_PASSWORD = "Goodluck412!"
 MAILTM_API_BASE = "https://api.mail.tm"
 GAMEHUB_CLIENTPARAMS = "5.3.5|61|en|SM-S928B|1920 * 1080|gamehub_android|gamehub_android_Official|samsung|||||||||banner.hub||qcom"
 GAMEHUB_SECRET_KEY = "all-egg-shell-y7ZatUDk"
