@@ -1,0 +1,18 @@
+name: Deploy Configs Worker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy bannerhub-configs-worker
+        run: |
+          curl -s -X PUT \
+            "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/workers/scripts/bannerhub-configs-worker" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -F "metadata={\"main_module\":\"bannerhub-configs-worker.js\",\"bindings\":[{\"type\":\"kv_namespace\",\"name\":\"CONFIG_KV\",\"namespace_id\":\"84a4729c49694cf9b25507a8bc59dec7\"},{\"type\":\"kv_namespace\",\"name\":\"TOKEN_STORE\",\"namespace_id\":\"e94aa6c2c5c8439a890940d3c00f890f\"}],\"compatibility_date\":\"2024-01-01\"};type=application/json" \
+            -F "bannerhub-configs-worker.js=@./bannerhub-configs-worker.js;type=application/javascript+module" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print('Deploy OK' if d.get('success') else ('FAILED: ' + str(d.get('errors',d))))"
