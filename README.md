@@ -1,4 +1,6 @@
 # GameHub Token Refresher Worker
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.gg/n8S4G2WZQ4)
+
 
 Automated token refresh worker that logs into GameHub every 4 hours using OTP authentication and stores fresh tokens in Cloudflare KV storage.
 
@@ -398,3 +400,8 @@ curl -X POST http://localhost:8787/refresh
 - GameHub API uses MD5 signatures for authentication
 - Secret key was reverse-engineered from `SignUtils.smali` in APK
 - Worker uses service-to-service authentication (not user-facing)
+
+
+## Community
+
+Join our Discord: https://discord.gg/n8S4G2WZQ4
